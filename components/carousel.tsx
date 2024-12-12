@@ -21,28 +21,28 @@ export function CarouselSpacing({
     number: number;
     steps: number;
 }) {
-    // Helper function to get the current ISO time for comparison
+
     const getCurrentTime = () => {
         const now = new Date();
         return now.toISOString();
     };
 
-    // Helper function to format the time string (HH:mm format)
+
     const formatTime = (isoString: string) => {
         const timePart = isoString.split("T")[1];
         return timePart ? timePart.slice(0, 5) : "N/A";
     };
 
-    // Handle undefined or empty time array
+    // check for time
     if (!time || time.length === 0) {
         return (
-            <div className="w-full flex items-center justify-center p-4 text-gray-600">
+            <div className="w-full flex items-center justify-center text-xl p-4 text-gray-600">
                 <span>No forecast data available. Please search for a location.</span>
             </div>
         );
     }
 
-    // Handle undefined or empty data array
+    // check for data
     if (!data || data.length === 0) {
         return (
             <div className="w-full flex items-center justify-center p-4 text-gray-600">
@@ -56,7 +56,7 @@ export function CarouselSpacing({
     const upcomingItems = time
         .map((t, index) => ({ time: t, temperature: data[index] }))
         .filter((item) => item.time >= currentTime) // Filter by current time
-        .slice(0, number); // Limit to the number of items
+        .slice(1, number); // Limit to the number of items
 
     return (
         <Carousel className="w-full relative">

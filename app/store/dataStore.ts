@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
+import { time } from "console";
 
 
 interface LocationComponents {
@@ -105,7 +106,8 @@ export const useWeatherStore = create<WeatherState>((set) => ({
                     longitude: lng,
                     current: ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "precipitation", "rain", "snowfall", "weather_code", "cloud_cover", "wind_speed_10m"],
                     hourly: ["temperature_2m", "precipitation_probability", "snowfall"],
-                    daily: "uv_index_max",
+                    daily: ["precipitation_sum", "snowfall_sum","uv_index_max"],
+                    forecast_days: 14,
                     timezone: "auto",
                 },
             });

@@ -127,13 +127,16 @@ export default function Dashboard() {
 
                     <div id="chart-info" className="flex  flex-col w-[30%]  dark:bg-zinc-800 bg-gray-200 p-3 gap-4 rounded-3xl">
                         <div className="flex flex-col relative m-2">
-                            <Label className="dark:text-zinc-200 text-zinc-600 my-4 text-4xl">Overview</Label>
+                            <Label className="dark:text-zinc-200 text-zinc-600 my-4 text-4xl">Forecast</Label>
                         </div>
-                        <div className="max-h-full overflow-y-auto h-[10em]">
+                        <div className=" overflow-y-auto h-[19.5em]">
                             <div className="flex flex-1 flex-col justify-start items-center">
                                 <UserCard userName="Ahmed" />
                                 <UserCard userName="Ahmed" />
                                 <UserCard userName="Ahmed" />
+                                <UserCard userName="Ahmed" />
+                                <UserCard userName="Ahmed" />
+
                             </div>
                         </div>
                     </div>
