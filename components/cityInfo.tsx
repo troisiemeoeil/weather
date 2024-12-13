@@ -61,7 +61,9 @@ export function DrawerBox() {
                 </body>
         
                 Remove the <body> tags and give me only what was inside of it.
-                Make it no more than 150 words.`;
+                Make it no more than 150 words.
+                and make it interesting and fun.
+                `;
         
                 const result = await model.generateContent(prompt);
                 setResult(result.response.text());
