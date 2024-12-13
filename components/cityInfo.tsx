@@ -35,39 +35,43 @@ export function DrawerBox() {
 
 
     async function handleRequest() {
-        if (locationName === "") {
-            alert("Please select a location first");
-            return;
-        }
-        const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_KEY || "");
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        const prompt = `You're a tourist guide expert, give me a description of the city of ${locationName} 
-        and what kind of tourist attractions it has. Give me some interesting and fun facts about it and some useful statistics. 
-        Generate it as html, just give me what's inside the <body> tag. follow this example: 
-        <body>
-            <h1>Monastir: A Tunisian Gem</h1>
-            <p>Monastir, a coastal city in Tunisia, boasts a rich history and stunning beaches.  Explore the Ribat, a 8th-century fortress offering panoramic views, and the Mausoleum of Habib Bourguiba, the first president of Tunisia.  Enjoy the vibrant marina, relax on the sandy shores, or delve into the bustling souks. </p>
-            <br />
-            <p><b>Interesting Fact:</b> Monastir was a significant base for the Barbary pirates.</p>
-            
-            <p><b>Fun Fact:</b> Monastir has a cool festival called the "Festival of the Sun".</p>
-            
-            <p><b>Statistics (approx.):</b>  <br /> Population: ~100,000;
-            <br />
-            <p><b>Area: (approx.):</b> ~1,000 square kilometers;
-            
-            <p><b>Average annual temperature: (approx.):</b> 19°C;
-             <br />
-            <p><b>Attractions:</b> Ribat, Mausoleum of Bourguiba, beaches, marina, souks.</p>
-        </body>
-
-        Remove the <body> tags and give me only what was inside of it.
-        Make it no more than 150 words.`;
-
-        const result = await model.generateContent(prompt);
-        setResult(result.response.text());
-        console.log(result.response.text());
+            try {
+                if (locationName === "") {
+                    alert("Please select a location first");
+                    return;
+                }
+                const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_KEY || "");
+                const model = genAI.getGenerativeModel({ model: "gemini-exp-1114" });
+                
+                const prompt = `You're a tourist guide expert, give me a description of the city of ${locationName} 
+                and what kind of tourist attractions it has. Give me some interesting and fun facts about it and some useful statistics. 
+                Generate it as html, just give me what's inside the <body> tag. follow this example: 
+                <body>
+                    <h1>Monastir: A Tunisian Gem</h1>
+                    <p>Monastir, a coastal city in Tunisia, boasts a rich history and stunning beaches.  Explore the Ribat, a 8th-century fortress offering panoramic views, and the Mausoleum of Habib Bourguiba, the first president of Tunisia.  Enjoy the vibrant marina, relax on the sandy shores, or delve into the bustling souks. </p>
+                    <br />
+                    <p><b>Interesting Fact:</b> Monastir was a significant base for the Barbary pirates.</p>
+                    
+                    <p><b>Fun Fact:</b> Monastir has a cool festival called the "Festival of the Sun".</p>
+                    
+                    <p><b>Statistics (approx.):</b>  <br /> Population: ~100,000;
+                    <br />
+                    <p><b>Area: (approx.):</b> ~1,000 square kilometers;
+                    
+                    <p><b>Average annual temperature: (approx.):</b> 19°C;
+                     <br />
+                    <p><b>Attractions:</b> Ribat, Mausoleum of Bourguiba, beaches, marina, souks.</p>
+                </body>
+        
+                Remove the <body> tags and give me only what was inside of it.
+                Make it no more than 150 words.`;
+        
+                const result = await model.generateContent(prompt);
+                setResult(result.response.text());
+                console.log(result.response.text());
+            } catch (error) {
+                alert(error);
+            }
     }
     return (
         <Drawer>
