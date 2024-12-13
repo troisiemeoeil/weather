@@ -23,8 +23,8 @@ const MapComponent = () => {
       center: selectedLocation ? [selectedLocation.lng, selectedLocation.lat] : [23.123988, 63.852931],
       zoom: 9, 
     });
-    console.log("hello");
-    
+
+  
   }, [state]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const MapComponent = () => {
         essential: true,
         zoom: 10,
       });
-
+   
 
     }
 

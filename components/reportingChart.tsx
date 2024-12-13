@@ -66,12 +66,12 @@ export function Chart({ percipitation, snowfall, time, }: { percipitation: numbe
     React.useState<keyof typeof chartConfig>("Percipitation");
 
   return (
-    <Card>
+    <Card className="w-full h-full">
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Weather Forecast Chart</CardTitle>
+          <CardTitle>Precipitation and Snowfall Chart</CardTitle>
           <CardDescription>
-            Showing precipitation and snowfall forecast for the upcoming days
+           Forecast for the upcoming 14 days
           </CardDescription>
         </div>
         <div className="flex">

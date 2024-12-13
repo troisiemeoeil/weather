@@ -49,12 +49,12 @@ export function CarouselSpacing({data,time,number,steps,}: {data: number[] | und
         .slice(1, number); // Limit to the number of items
 
     return (
-        <Carousel className="w-full relative">
+        <Carousel className="w-full  relative">
             <CarouselContent className="-ml-1 backdrop-blur-3xl">
                 {upcomingItems.map((item, index) => (
                     <CarouselItem
                         key={index}
-                        className="pl-1 sm:basis-1/2 md:basis-1/3 lg:basis-1/8 xl:basis-1/8"
+                        className="h-full pl-1 sm:basis-1/2 md:basis-1/3 lg:basis-1/8 xl:basis-1/8"
                     >
                         <div className="p-1">
                             <Card className="bg-transparent border-transparent shadow-transparent p-0 m-0">

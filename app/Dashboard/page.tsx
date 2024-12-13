@@ -1,30 +1,27 @@
 "use client";
 import { CarouselSpacing } from "@/components/carousel";
-import { ModeToggle } from "@/components/mode-switcher";
 import { Chart } from "@/components/reportingChart";
 import {
     Avatar,
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Label } from "@/components/ui/label"
 import { useWeatherStore } from "../store/dataStore";
 import { useEffect } from "react";
 import MapComponent from "@/components/map";
+import { ScrollArea } from "@/components/ui/scroll-area";
 export default function Dashboard() {
 
 
+    
+    const suggestions = useWeatherStore((state) => state.suggestions);
+    const selectedLocation = useWeatherStore((state) => state.selectedLocation);
 
-
-
-    const currentDate = new Intl.DateTimeFormat("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    }).format(new Date());
+    const getData = useWeatherStore((state) => state.weatherData) || [];
+    useEffect(() => {
+        if (getData) console.log("Weather data:", getData);
+    }, [getData]);
 
     const UserCard = ({ userName }: { userName: string }) => (
         <div className="flex w-full dark:bg-zinc-400/50 bg-gray-400/40 mt-4 rounded-2xl mb-2 p-4">
@@ -34,33 +31,27 @@ export default function Dashboard() {
             </Avatar>
             <div className="flex flex-col ml-4">
                 <Label className="dark:text-zinc-200 text-zinc-600 text-xl">Hi, {userName}</Label>
-                <Label className="dark:text-zinc-200 text-zinc-600 text-xs">{currentDate}</Label>
+                <Label className="dark:text-zinc-200 text-zinc-600 text-xs">{new Intl.DateTimeFormat("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    }).format(new Date())}</Label>
             </div>
             <div className="flex flex-1 justify-end items-center gap-3">
-                {/* <ModeToggle /> */}
             </div>
         </div>
     );
-    const suggestions = useWeatherStore((state) => state.suggestions);
-    const selectedLocation = useWeatherStore((state) => state.selectedLocation);
-
-    const getData = useWeatherStore((state) => state.weatherData) || [];
-    useEffect(() => {
-        if (getData) console.log("Weather data:", getData);
-    }, [getData]);
 
 
 
-    // const setSelectedLocation = useWeatherStore((state) => state.setSelectedLocation);
-    // const handleSelectLocation = (lat: number, lng: number, name: string) => {
-    //   setSelectedLocation({  lat, lng, name });
-    // };
+
 
     return (
-        <div className="py-4 flex gap-4">
+        <div className="py-4 flex flex-col items-center align-middle justify-center gap-4">
             <div id="left-section" className="xl:w-full md:w-full w-full flex flex-col gap-4">
-                <div className="flex justify-between gap-2">
-                    <div id="general-info" className="flex flex-col w-[60%] h-[19.5em] dark:bg-zinc-800 bg-gray-200 p-8 gap-4 rounded-3xl">
+                <div className="flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-2 h-[40vh] pb-10 xl:p-0 lg:p-0 md:p-0">
+                    <div id="general-info" className="flex flex-col xl:w-[60%] lg:w-[60%] md:w-[60%] w-full h-full dark:bg-zinc-800 bg-gray-200 p-8 gap-4 rounded-3xl">
                         <div className="max-h-full overflow-y-auto">
                             <div className="flex flex-1 justify-around items-center">
 
@@ -105,45 +96,41 @@ export default function Dashboard() {
                         )}
                     </div>
 
-                    <div id="chart-info" className="flex flex-col relative align-middle items-center p-4 w-[40%]  ">
+                    <div id="chart-info" className="flex flex-col relative align-middle items-center p-4 xl:w-[40%] lg:w-[40%] md:w-[40%] w-full h-full  ">
                         <MapComponent />
                     </div>
 
                 </div>
 
-                <div className="flex gap-2">
-                    <div id="chart-info" className="flex w-[70%] flex-col dark:bg-zinc-800 bg-gray-200 p-8 gap-4 rounded-3xl">
-                        <div className="max-h-full overflow-y-auto">
-                            <div className="flex flex-1 justify-start items-center">
-                                <div className="flex flex-col relative ml-4">
-                                    <Label className="dark:text-zinc-200 text-zinc-600 text-4xl"> Precipitation & Snowfall Levels</Label>
-                                </div>
-                            </div>
-                        </div>
+                <div className="flex  flex-col justify-between xl:flex-row lg:flex-row md:flex-row  gap-4 h-[40vh]">
+                    <div id="chart-info" className="flex xl:w-[70%] lg:w-[70%] md:w-[70%] w-full h-full flex-col                                                                                                                                               0 gap-4 rounded-3xl">
+             
 
                         <Chart percipitation={getData?.daily?.precipitation_sum} snowfall={getData?.daily?.snowfall_sum} time={getData?.daily?.time} />
 
                     </div>
 
-                    <div id="chart-info" className="flex  flex-col w-[30%]  dark:bg-zinc-800 bg-gray-200 p-3 gap-4 rounded-3xl">
-                        <div className="flex flex-col relative m-2">
-                            <Label className="dark:text-zinc-200 text-zinc-600 my-4 text-4xl">Forecast</Label>
+                    <div id="chart-info" className="flex  flex-col xl:w-[30%] lg:w-[30%] md:w-[30%] w-full h-full   dark:bg-zinc-800 bg-gray-200 p-3 gap-4 rounded-3xl">
+                        <div className="flex flex-col relative">
+                            <Label className="dark:text-zinc-200 text-zinc-600 px-4 font-semibold text-2xl">Forecast</Label>
                         </div>
                         <div className=" overflow-y-auto h-[19.5em]">
-                            <div className="flex flex-1 flex-col justify-start items-center">
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
+                            <ScrollArea className="flex flex-1 flex-col justify-start items-center rounded-md border p-2">
 
-                            </div>
+                                <UserCard userName="Ahmed" />
+                                <UserCard userName="Ahmed" />
+                                <UserCard userName="Ahmed" />
+                                <UserCard userName="Ahmed" />
+                                <UserCard userName="Ahmed" />
+                        </ScrollArea>
                         </div>
                     </div>
                 </div>
-                <div id="chart-info" className="flex flex-col dark:bg-zinc-800 bg-gray-200 p-8 gap-4 rounded-3xl">
-                    {/* <CarouselSpacing steps={4} number={15} /> */}
-                </div>
+        
+            </div>
+            <div className="flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-4 h-[40vh]">
+
+            <footer className="dark:text-zinc-200 text-zinc-600 text-sm  w-full">Made by Ahmed Boulakhras</footer>
             </div>
 
         </div>

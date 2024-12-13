@@ -93,8 +93,8 @@ export function DrawerBox() {
                         {result ? (
                             <div dangerouslySetInnerHTML={{ __html: result }} />
                         ) : (
-                            <div className="w-full flex items-center justify-center text-xl p-4 text-gray-600">
-                                Loading...
+                            <div className="w-full flex items-center justify-center text-sm p-4 text-gray-500">
+                                We're working on it, this might take a few seconds...
                             </div>
                         )}
                     </div>

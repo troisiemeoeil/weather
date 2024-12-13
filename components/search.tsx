@@ -60,7 +60,7 @@ export function CommandDialogDemo({ onSelect }: { onSelect: (lat: number, lng: n
     <>
       <div className="text-sm flex align-middle items-center gap-2 dark:border-zinc-500 border-zinc-600 text-muted-foreground">
         <Input type="text" placeholder="Search..." className="cursor-pointer dark:border-zinc-600 border-zinc-600" onSelect={() => setOpen(true)} />
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground dark:bg-zinc-600 opacity-100">
+        <kbd className="pointer-events-none hidden xl:inline-flex lg:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground dark:bg-zinc-600 opacity-100">
           <span className="text-xs">⌘</span>E
         </kbd>
       </div>

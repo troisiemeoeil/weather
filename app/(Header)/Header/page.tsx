@@ -13,9 +13,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DrawerBox } from "@/components/cityInfo";
 export default function Header() {
-    const setSelectedLocation = useWeatherStore((state) => state.setSelectedLocation);
     const handleLocationSelect = (lat: number, lng: number) => {
-        // setSelectedLocation({ , lat, lng });
         console.log("Selected location:", { lat, lng });
     };
     const [userName, setUserName] = useState("");
@@ -76,7 +74,7 @@ export default function Header() {
             </Avatar>
             <div className="flex flex-col ml-4 ">
                 <Label className="dark:text-zinc-200 text-zinc-600  text-xl">Hi, {userName} </Label>
-                <Label className="dark:text-zinc-200 text-zinc-600 text-xs">
+                <Label className="dark:text-zinc-200 text-zinc-600 text-xs hidden xl:inline-flex lg:inline-flex">
                     {new Intl.DateTimeFormat("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }).format(new Date())}
                 </Label>
 
@@ -89,7 +87,7 @@ export default function Header() {
                 {locationName ? (
                 <DrawerBox />
                 ) : (
-                    <Button disabled>Enter your own location</Button>
+                    <Button disabled>Explore a city</Button>
                 )}
             </div>
 
