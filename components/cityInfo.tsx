@@ -9,10 +9,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Button } from "@/components/ui/button"
 import {
     Drawer,
-    DrawerClose,
     DrawerContent,
     DrawerDescription,
-    DrawerFooter,
     DrawerHeader,
     DrawerTitle,
     DrawerTrigger,
@@ -40,7 +38,7 @@ export function DrawerBox() {
                     alert("Please select a location first");
                     return;
                 }
-                const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_KEY || "");
+                const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI || "");
                 const model = genAI.getGenerativeModel({ model: "gemini-exp-1114" });
                 
                 const prompt = `You're a tourist guide expert, give me a description of the city of ${locationName} 
