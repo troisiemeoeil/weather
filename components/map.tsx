@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import { useWeatherStore } from "@/app/store/dataStore";
-import { useTheme } from "next-themes";
 import { useThemeStore } from "@/app/store/themeStore";
 
 // Set your Mapbox access token

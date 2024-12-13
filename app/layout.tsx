@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import "./mapbox-gl.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -21,7 +20,7 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Weather App" />
-        <meta name="author" content="Your Name" />
+        <meta name="author" content="Ahmed Boulakhras" />
         {/* Turf.js plugin */}
         <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
       

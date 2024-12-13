@@ -2,7 +2,6 @@
 import { ModeToggle } from "@/components/mode-switcher";
 import { CommandDialogDemo } from "@/components/search";
 import { Label } from "@/components/ui/label"
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import {
     Avatar,
     AvatarFallback,
@@ -48,22 +47,6 @@ export default function Header() {
             setLocationName(selectedLocation?.components?.city || selectedLocation?.components?.country || selectedLocation?.components?.state || selectedLocation?.components?.region  || ""); 
         }
     }, [selectedLocation]);
-
-
-    async function handleRequest() {
-        if(locationName === "") {
-            alert("Please select a location first");
-            return;
-        }
-        const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_KEY || "");
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        const prompt = `You're a tourist guide expert, give me a description of the city of ${locationName} 
-        and what kind of tourist attractions it has. Give me some interesting facts about it and some useful statistics. Make it no more than 150 words.`;
-
-        const result = await model.generateContent(prompt);
-        console.log(result.response.text());
-    }
 
 
     return (
