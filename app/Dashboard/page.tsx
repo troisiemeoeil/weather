@@ -116,12 +116,12 @@ export default function Dashboard() {
                         <div className="max-h-full overflow-y-auto">
                             <div className="flex flex-1 justify-start items-center">
                                 <div className="flex flex-col relative ml-4">
-                                    <Label className="dark:text-zinc-200 text-zinc-600 text-4xl">Precipitation Levels</Label>
+                                    <Label className="dark:text-zinc-200 text-zinc-600 text-4xl"> Precipitation & Snowfall Levels</Label>
                                 </div>
                             </div>
                         </div>
 
-                        <Chart />
+                        <Chart percipitation={getData?.daily?.precipitation_sum} snowfall={getData?.daily?.snowfall_sum} time={getData?.daily?.time} />
 
                     </div>
 

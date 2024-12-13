@@ -10,17 +10,7 @@ import {
 import { Avatar } from "@radix-ui/react-avatar";
 import { AvatarFallback, AvatarImage } from "./ui/avatar";
 
-export function CarouselSpacing({
-    data,
-    time,
-    number,
-    steps,
-}: {
-    data: number[] | undefined;
-    time: string[] | undefined;
-    number: number;
-    steps: number;
-}) {
+export function CarouselSpacing({data,time,number,steps,}: {data: number[] | undefined; time: string[] | undefined; number: number; steps: number;}) {
 
     const getCurrentTime = () => {
         const now = new Date();
