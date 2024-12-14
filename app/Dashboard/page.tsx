@@ -14,8 +14,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 export default function Dashboard() {
 
 
-    
-    const suggestions = useWeatherStore((state) => state.suggestions);
     const selectedLocation = useWeatherStore((state) => state.selectedLocation);
 
     const getData = useWeatherStore((state) => state.weatherData) || [];
@@ -103,14 +101,7 @@ export default function Dashboard() {
                 </div>
 
                 <div className="flex  flex-col justify-between xl:flex-row lg:flex-row md:flex-row  gap-4 h-[40vh]">
-                    <div id="chart-info" className="flex xl:w-[70%] lg:w-[70%] md:w-[70%] w-full h-full flex-col                                                                                                                                               0 gap-4 rounded-3xl">
-             
-
-                        <Chart percipitation={getData?.daily?.precipitation_sum} snowfall={getData?.daily?.snowfall_sum} time={getData?.daily?.time} />
-
-                    </div>
-
-                    <div id="chart-info" className="flex  flex-col xl:w-[30%] lg:w-[30%] md:w-[30%] w-full h-full   dark:bg-zinc-800 bg-gray-200 p-3 gap-4 rounded-3xl">
+                <div id="forecast-info" className="flex  flex-col xl:w-[30%] lg:w-[30%] md:w-[30%] w-full h-full   dark:bg-zinc-800 bg-gray-200 p-3 gap-4 rounded-3xl">
                         <div className="flex flex-col relative">
                             <Label className="dark:text-zinc-200 text-zinc-600 px-4 font-semibold text-2xl">Forecast</Label>
                         </div>
@@ -125,10 +116,18 @@ export default function Dashboard() {
                         </ScrollArea>
                         </div>
                     </div>
+                    <div id="chart-info" className="flex xl:w-[70%] lg:w-[70%] md:w-[70%] w-full h-full flex-col                                                                                                                                               0 gap-4 rounded-3xl">
+             
+
+                        <Chart percipitation={getData?.daily?.precipitation_sum} snowfall={getData?.daily?.snowfall_sum} time={getData?.daily?.time} />
+
+                    </div>
+
+                   
                 </div>
         
             </div>
-            <div className="flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-4 h-[40vh]">
+            <div className="flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-4">
 
             <footer className="dark:text-zinc-200 text-zinc-600 text-sm  w-full">Made by Ahmed Boulakhras</footer>
             </div>
