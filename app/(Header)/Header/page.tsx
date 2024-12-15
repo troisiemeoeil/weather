@@ -50,7 +50,9 @@ export default function Header() {
 
 
     return (
-        <header className="flex dark:bg-zinc-800 bg-gray-200 mt-4 rounded-full p-4">
+        <header className="flex xl:flex-row lg:flex-row md:flex-row items-center flex-col gap-2 dark:bg-zinc-800 bg-gray-200 mt-4 xl:rounded-full lg:rounded-full md:rounded-full rounded-3xl p-4">
+        <div className="flex  items-center justify-between xl:w-[90%] lg:w-[90%] md:w-[90%] w-full">
+            <div className="flex items-center">
             <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                 <AvatarFallback>CN</AvatarFallback>
@@ -62,15 +64,22 @@ export default function Header() {
                 </Label>
 
             </div>
+            </div>
+       
+          
+           <div className="flex items-center gap-1">
+           <CommandDialogDemo onSelect={handleLocationSelect} />
+           <ModeToggle />
+           </div>
+        </div>
 
-            <div className="flex flex-1 justify-end items-center gap-3">
-                <CommandDialogDemo onSelect={handleLocationSelect} />
-                <ModeToggle />
+            <div className="flex justify-end items-center gap-3">
+          
      
                 {locationName ? (
                 <DrawerBox />
                 ) : (
-                    <Button disabled>Explore a city</Button>
+                    <Button className="xl:w-[15vw] lg:w-[15vw] md:w-[15vw] w-[15rem] cursor-not-allowed" disabled>Explore a city</Button>
                 )}
             </div>
 
