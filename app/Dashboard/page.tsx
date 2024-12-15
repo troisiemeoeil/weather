@@ -21,20 +21,20 @@ export default function Dashboard() {
         if (getData) console.log("Weather data:", getData);
     }, [getData]);
 
-    const UserCard = ({ userName }: { userName: string }) => (
+    const UserCard = ({ tempMax, tempMin, day }: { tempMax: number, tempMin: number, day: string }) => (
         <div className="flex w-full dark:bg-zinc-400/50 bg-gray-400/40 mt-4 rounded-2xl mb-2 p-4">
             <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                 <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <div className="flex flex-col ml-4">
-                <Label className="dark:text-zinc-200 text-zinc-600 text-xl">Hi, {userName}</Label>
-                <Label className="dark:text-zinc-200 text-zinc-600 text-xs">{new Intl.DateTimeFormat("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    }).format(new Date())}</Label>
+            <div className="flex w-full ml-4">
+          <div className="container">
+          <Label className="dark:text-zinc-200 text-zinc-600 text-xl font-bold"> {tempMin}°C /</Label>
+                <Label className="dark:text-zinc-200 text-zinc-600 text-sm"> {tempMax}°C</Label>
+
+          </div>
+                <Label className="dark:text-zinc-200 text-zinc-600 text-xs">{day.slice(8, 10)}</Label>
+
             </div>
             <div className="flex flex-1 justify-end items-center gap-3">
             </div>
@@ -101,35 +101,45 @@ export default function Dashboard() {
                 </div>
 
                 <div className="flex  flex-col justify-between xl:flex-row lg:flex-row md:flex-row  gap-4 h-[40vh]">
-                <div id="forecast-info" className="flex  flex-col xl:w-[30%] lg:w-[30%] md:w-[30%] w-full h-full   dark:bg-zinc-800 bg-gray-200 p-3 gap-4 rounded-3xl">
+                    <div id="forecast-info" className="flex  flex-col xl:w-[30%] lg:w-[30%] md:w-[30%] w-full h-full   dark:bg-zinc-800 bg-gray-200 p-3 gap-4 rounded-3xl">
                         <div className="flex flex-col relative">
                             <Label className="dark:text-zinc-200 text-zinc-600 px-4 font-semibold text-2xl">Forecast</Label>
                         </div>
                         <div className=" overflow-y-auto h-[19.5em]">
                             <ScrollArea className="flex flex-1 flex-col justify-start items-center rounded-md border p-2">
+                                {getData?.daily?.temperature_2m_min && getData?.daily?.time ? (
+                                    getData.daily.temperature_2m_min.slice(0, 7).map((temp: number,  index : number) => (
+                                        <UserCard
+                                            key={index}
+                                            tempMax={getData.daily.temperature_2m_max[index]}
+                                            tempMin={temp}
 
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
-                                <UserCard userName="Ahmed" />
-                        </ScrollArea>
+                                            day={getData.daily.time[index]}
+                                        />
+                                    ))
+                                ) : (
+                                    <div className="flex flex-1 flex-col justify-start items-center rounded-md border p-2">
+                                        no data yet
+                                    </div>
+                                )}
+                            </ScrollArea>
+
                         </div>
                     </div>
                     <div id="chart-info" className="flex xl:w-[70%] lg:w-[70%] md:w-[70%] w-full h-full flex-col                                                                                                                                               0 gap-4 rounded-3xl">
-             
+
 
                         <Chart percipitation={getData?.daily?.precipitation_sum} snowfall={getData?.daily?.snowfall_sum} time={getData?.daily?.time} />
 
                     </div>
 
-                   
-                </div>
-        
-            </div>
-            <div className="flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-4">
 
-            <footer className="dark:text-zinc-200 text-zinc-600 text-sm  w-full">Made by Ahmed Boulakhras</footer>
+                </div>
+
+            </div>
+            <div className="flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-">
+
+                <footer className="dark:text-zinc-200 text-zinc-600 text-sm  w-full">Made by Ahmed Boulakhras</footer>
             </div>
 
         </div>
