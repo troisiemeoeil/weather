@@ -14,8 +14,6 @@ const MapComponent = () => {
   const darkMap = "mapbox://styles/lewwy/cm4kvckkj00c301r09g3ahddq"
   const lightMap = "mapbox://styles/lewwy/cm4mrxxqe003o01sf0z2idxjf"
   useEffect(() => {
-
-
     map.current = new mapboxgl.Map({
       container: mapContainer.current!,
       style: state === "dark" ? darkMap : lightMap,
@@ -39,7 +37,7 @@ const MapComponent = () => {
 
   }, [selectedLocation]);
 
-  return <div ref={mapContainer} className="w-[100%] h-[100%] absolute top-0 left-0  rounded-md" />;
+  return <div ref={mapContainer} className="w-[100%] h-[40vh]  m-18  absolute top-0 left-0  rounded-md" />;
 };
 
 export default MapComponent;

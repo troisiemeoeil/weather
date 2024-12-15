@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/carousel";
 import { Avatar } from "@radix-ui/react-avatar";
 import { AvatarFallback, AvatarImage } from "./ui/avatar";
+import WeatherCode from "./weatherCode";
 
-export function CarouselSpacing({data,time,number,steps,}: {data: number[] | undefined; time: string[] | undefined; number: number; steps: number;}) {
+export function CarouselSpacing({data,time,number,steps,code}: {data: number[] | undefined; time: string[] | undefined; number: number; steps: number; code: number[] | undefined; }) {
 
     const getCurrentTime = () => {
         const now = new Date();
@@ -26,13 +27,13 @@ export function CarouselSpacing({data,time,number,steps,}: {data: number[] | und
     // check for time
     if (!time || time.length === 0) {
         return (
-            <div className="w-full flex items-center justify-center text-xl p-4 text-gray-600">
+            <div className="w-full flex items-center justify-center  text-xl p-4 text-gray-600">
                 <span>No forecast data available. Please search for a location.</span>
             </div>
         );
     }
 
-    // check for data
+    // check if data exists
     if (!data || data.length === 0) {
         return (
             <div className="w-full flex items-center justify-center p-4 text-gray-600">
@@ -44,7 +45,7 @@ export function CarouselSpacing({data,time,number,steps,}: {data: number[] | und
     // Filter time and data to include only upcoming hours
     const currentTime = getCurrentTime();
     const upcomingItems = time
-        .map((t, index) => ({ time: t, temperature: data[index] }))
+        .map((t, i) => ({ time: t, temperature: data[i] }))
         .filter((item) => item.time >= currentTime) // Filter by current time
         .slice(1, number); // Limit to the number of items
 
@@ -64,17 +65,10 @@ export function CarouselSpacing({data,time,number,steps,}: {data: number[] | und
                                         {formatTime(item.time)}
                                     </span>
                                     {/* Avatar */}
-                                    <Avatar>
-                                        <AvatarImage
-                                            src="https://github.com/shadcn.png"
-                                            alt="@shadcn"
-                                            className="h-16 w-16 rounded-full"
-                                        />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
+                              <WeatherCode weatherCode={code?[index].toString():""} />
                                     {/* Display Temperature */}
                                     <span className="text-sm font-semibold text-zinc-600">
-                                        {item.temperature}°
+                                        {item.temperature}°C
                                     </span>
                                 </CardContent>
                             </Card>

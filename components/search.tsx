@@ -11,6 +11,7 @@ import {
 import { useWeatherStore } from "@/app/store/dataStore";
 import { Input } from "./ui/input";
 import { debounce } from "@/app/libs/debounce";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 export function CommandDialogDemo({ onSelect }: { onSelect: (lat: number, lng: number) => void }) {
   const { suggestions, fetchSuggestions, fetchWeatherByCity, setSelectedLocation, selectedLocation } = useWeatherStore();
@@ -64,7 +65,8 @@ export function CommandDialogDemo({ onSelect }: { onSelect: (lat: number, lng: n
         </kbd>
       </div>
       <CommandDialog open={open} onOpenChange={setOpen} aria-label="Search City Dialog">
-    
+   
+      <DialogTitle ></DialogTitle>
         <div className="p-4">
           <Input
             type="text"
