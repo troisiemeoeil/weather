@@ -73,13 +73,16 @@ export default function Header() {
            </div>
         </div>
 
-            <div className="flex justify-end items-center gap-3">
+            <div className="flex justify-end items-center gap-3 ">
           
      
                 {locationName ? (
                 <DrawerBox />
                 ) : (
-                    <Button className="xl:w-[15vw] lg:w-[15vw] md:w-[15vw] w-[15rem] cursor-not-allowed" disabled>Explore a city</Button>
+                    <div className="cursor-not-allowed">
+
+                    <Button className="xl:w-[15vw] lg:w-[15vw] md:w-[15vw] w-[15rem] " disabled>Explore a city</Button>
+                    </div>
                 )}
             </div>
 
