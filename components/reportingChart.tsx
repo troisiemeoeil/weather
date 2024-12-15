@@ -33,7 +33,7 @@ export function Chart({ percipitation, snowfall, time, }: { percipitation: numbe
 
   if (!time || time.length === 0) {
     return (
-      <div className="w-full flex items-center justify-center text-xl p-4 text-gray-600">
+      <div className="w-full flex flex-col items-center align-middle justify-center text-xl p-4 text-gray-600">
         <span>No forecast data available. Please search for a location.</span>
       </div>
     );

@@ -22,7 +22,7 @@ export default function Dashboard() {
         if (getData) console.log("Weather data:", getData);
     }, [getData]);
 
-    const UserCard = ({ tempMax, tempMin, day, code }: { tempMax: number, tempMin: number, day: string, code: string }) => (
+    const ForecastByDayCard = ({ tempMax, tempMin, day, code }: { tempMax: number, tempMin: number, day: string, code: string }) => (
         <div className="flex w-full items-center dark:bg-zinc-400/50 bg-gray-400/40 mt-4 rounded-2xl mb-2 p-4">
             <WeatherCode style="text-4xl" weatherCode={code} />
             <div className="flex w-full ml-4">
@@ -110,7 +110,7 @@ export default function Dashboard() {
                             <ScrollArea className="flex flex-1 flex-col justify-start items-center rounded-md border p-2">
                                 {getData?.daily?.temperature_2m_min && getData?.daily?.time ? (
                                     getData.daily.temperature_2m_min.slice(0, 7).map((temp: number,  index : number) => (
-                                        <UserCard
+                                        <ForecastByDayCard
                                             key={index}
                                             tempMax={getData.daily.temperature_2m_max[index]}
                                             tempMin={temp}
@@ -119,7 +119,7 @@ export default function Dashboard() {
                                         />
                                     ))
                                 ) : (
-                                    <div className="flex flex-1 flex-col justify-center align-middle  rounded-md border p-2">
+                                    <div className="flex flex-1 flex-col justify-center align-middle text-gray-600  rounded-md border p-2">
                                         No forecast data available. Please search for a location.
                                     </div>
                                 )}
@@ -127,7 +127,7 @@ export default function Dashboard() {
 
                         </div>
                     </div>
-                    <div id="chart-info" className="flex flex-col relative align-middle items-center container  xl:w-[70%] lg:w-[70%] md:w-[70%] w-full">
+                    <div id="chart-info" className="flex flex-col items-center align-middle justify-center container  xl:w-[70%] lg:w-[70%] md:w-[70%] w-full">
                         <Chart percipitation={getData?.daily?.precipitation_sum} snowfall={getData?.daily?.snowfall_sum} time={getData?.daily?.time} />
 
                     </div>
