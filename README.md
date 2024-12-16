@@ -1,5 +1,5 @@
 
-![Project Image](https://centriafi-my.sharepoint.com/:i:/g/personal/ahmed_boulakhras_centria_fi/Edc9D4JbjLlPqdsX8iSGfM8BUyKlsWAsFOBge_YZUrSiRw?e=coD80B)
+![Project Image](https://centriafi-my.sharepoint.com/:i:/g/personal/ahmed_boulakhras_centria_fi/Edc9D4JbjLlPqdsX8iSGfM8BUyKlsWAsFOBge_YZUrSiRw?e=coD80B.png)
 
 # Modern Weather Application made with Next.js and Gemini AI
 ## A feature rich weather forecast app showing the current weather, 24-hour forecast, and weather conditions for a given location. 
