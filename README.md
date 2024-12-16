@@ -29,10 +29,20 @@ Finally, the app uses Gemini AI to generate a description of the location featur
 
 ## Installation
 
-To install the dependencies, run the following command in your terminal:
+1. Clone the repository to your local machine:
+```bash
+git clone https://github.com/troisiemeoeil/weather.git
+```
+
+2. Install the dependencies by run the following command in your terminal:
 
 ```bash
-npm install .
+npm install 
+```
+or 
+
+```bash
+npm i
 ```
 
 ## Usage
