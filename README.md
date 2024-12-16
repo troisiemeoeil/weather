@@ -1,5 +1,5 @@
 
-![Project Image](https://i.ibb.co/b7v8QXc/Banner.png)
+![Project Image](https://i.postimg.cc/7Zh2tkKg/Banner.png)
 
 # Modern Weather Application made with Next.js and Gemini AI
 ## A feature rich weather forecast app showing the current weather, 24-hour forecast, and weather conditions for a given location. 
