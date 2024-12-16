@@ -22,10 +22,12 @@ Finally, the app uses Gemini AI to generate a description of the location featur
 ## Features
 
 - Current weather updates
-- 24-hour forecast
-- Weather conditions
-- Geocoding using OpenCageData
+- 24-hour weather forecast
+- Weather conditions (Percipitation and snowfall)
+- Geolocation using Mapbox GL and geocoding using OpenCageData
 - Natural language processing using Gemini AI
+- Theme Switcher
+- Responsive design
 
 ## Installation
 

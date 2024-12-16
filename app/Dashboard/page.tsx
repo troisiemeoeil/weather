@@ -15,27 +15,25 @@ import WeatherCode from "@/components/weatherCode";
 export default function Dashboard() {
 
 
+    // getting weather data and selected location from the useWeatherStore
     const selectedLocation = useWeatherStore((state) => state.selectedLocation);
-
     const getData = useWeatherStore((state) => state.weatherData) || [];
-    useEffect(() => {
-        if (getData) console.log("Weather data:", getData);
-    }, [getData]);
+
 
     const ForecastByDayCard = ({ tempMax, tempMin, day, code }: { tempMax: number, tempMin: number, day: string, code: string }) => (
         <div className="flex w-full items-center dark:bg-zinc-400/50 bg-gray-400/40 mt-4 rounded-2xl mb-2 p-4">
             <WeatherCode style="text-4xl" weatherCode={code} />
             <div className="flex w-full ml-4">
-          <div className="container">
-          <Label className="dark:text-zinc-200 text-zinc-600 text-2xl font-medium"> {tempMin}°C </Label>
-                <Label className="dark:text-zinc-200 text-zinc-600 text-xs">/ {tempMax}°C</Label>
+                <div className="container">
+                    <Label className="dark:text-zinc-200 text-zinc-600 text-2xl font-medium"> {tempMin}°C </Label>
+                    <Label className="dark:text-zinc-200 text-zinc-600 text-xs">/ {tempMax}°C</Label>
 
-          </div>
+                </div>
                 <Label className="dark:text-zinc-200 text-zinc-600 text-base mr-1">{day.slice(8, 10)}</Label>
                 <Label className="dark:text-zinc-200 text-zinc-600 text-xs">{new Intl.DateTimeFormat("en-US", {
-    
-        month: "long",
-    }).format(new Date()).slice(0, 3)}</Label>
+
+                    month: "long",
+                }).format(new Date()).slice(0, 3)}</Label>
 
             </div>
             <div className="flex flex-1 justify-end items-center gap-3">
@@ -49,18 +47,18 @@ export default function Dashboard() {
 
     return (
         <div className="py-4 flex flex-col items-center align-middle justify-center gap-4">
-            <div id="left-section" className="xl:w-full md:w-full w-full flex flex-col xl:gap-4 lg:gap-4 md:gap-4 gap-14">
-                <div className=" flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-2 PB-8  xl:p-0 lg:p-0 md:p-0">
+            <div id="left-section" className="xl:w-full md:w-full w-full flex flex-col xl:gap-4 lg:gap-4 md:gap-4 gap-2">
+                <div className=" flex flex-col justify-between xl:flex-row lg:flex-row md:flex-row gap-2 PB-8  xl:p-0 lg:p-0 md:p-0 xl:h-[40vh] lg:h-[40vh] md:h-[40vh] h-[60vh]">
 
-              
 
-                    <div id="general-info" className="flex flex-col overflow-y-hidden xl:w-[60%] lg:w-[60%] md:w-[60%] w-full h-full dark:bg-zinc-800 bg-gray-200 p-8 gap-4 rounded-3xl">
+
+                    <div id="general-info" className="flex flex-col justify-center overflow-y-hidden xl:w-[60%] lg:w-[60%] md:w-[60%] w-full xl:h-full lg:h-full md:h-full h-[80%] dark:bg-zinc-800 bg-gray-200 p-8 gap-4 rounded-3xl">
                         <div className="max-h-full overflow-y-auto">
                             <div className="flex flex-1 justify-around items-center">
 
                                 {selectedLocation && getData ?
                                     <>
-                                    <WeatherCode style={"text-4xl"}  weatherCode={getData?.hourly?.weather_code[0]} />
+                                        <WeatherCode style={"text-4xl"} weatherCode={getData?.hourly?.weather_code[0]} />
                                         <div className="flex flex-col relative gap-2 ">
                                             <Label className="flex flex-col relative  text-4xl">{selectedLocation?.components.city || selectedLocation?.components.town || selectedLocation?.components.state || selectedLocation?.components.county || selectedLocation?.components.village || "N/A"}</Label>
 
@@ -95,21 +93,21 @@ export default function Dashboard() {
                             </div>
                         )}
                     </div>
-                    <div id="Map-info" className="flex flex-col relative  align-middle items-center container  xl:w-[40%] lg:w-[40%] md:w-[40%] w-full  h-[35vh]  ">
+                    <div id="Map-info" className="flex flex-col relative  align-middle items-center container  xl:w-[40%] lg:w-[40%] md:w-[40%] w-full  h-[40vh]  ">
                         <MapComponent />
                     </div>
-         
+
                 </div>
 
-                <div className="flex flex-col relative justify-between xl:flex-row lg:flex-row md:flex-row gap-2 h-[40vh] pb-10 xl:p-0 lg:p-0 md:p-0">
+                <div className="flex flex-col relative justify-between xl:flex-row lg:flex-row md:flex-row gap-2 h-[40vh]  xl:pt-4 lg:pt-8 md:pt-8 pt-0">
                     <div id="forecast-info" className="flex flex-col xl:w-[30%] lg:w-[30%] md:w-[30%] w-full h-full dark:bg-zinc-800 bg-gray-200 p-4  rounded-3xl">
                         <div className="flex flex-col relative">
-                            <Label className="dark:text-zinc-200 text-zinc-600 px-4 font-semibold text-2xl">Forecast</Label>
+                            <Label className="dark:text-zinc-200 text-zinc-600 px-4 font-medium text-xl">14 days Weather Forecast</Label>
                         </div>
                         <div className=" overflow-y-auto h-full">
                             <ScrollArea className="flex flex-1 flex-col justify-start items-center rounded-md border p-2">
                                 {getData?.daily?.temperature_2m_min && getData?.daily?.time ? (
-                                    getData.daily.temperature_2m_min.slice(0, 7).map((temp: number,  index : number) => (
+                                    getData.daily.temperature_2m_min.slice(0, 7).map((temp: number, index: number) => (
                                         <ForecastByDayCard
                                             key={index}
                                             tempMax={getData.daily.temperature_2m_max[index]}

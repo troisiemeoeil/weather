@@ -41,7 +41,7 @@ export default function WeatherCode({ weatherCode, style }: { weatherCode: strin
         }
       }
     }
-    return "Unknown weather condition 🌈";
+    return "N/A 🌈";
   }
 
   return <Label className={style}>

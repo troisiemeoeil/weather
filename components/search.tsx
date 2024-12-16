@@ -32,11 +32,11 @@ export function CommandDialogDemo({ onSelect }: { onSelect: (lat: number, lng: n
   };
 
   const handleSelectSuggestion = (name: string, lat: number, lng: number) => {
-    setQuery(name); // Update input with the selected suggestion
-    onSelect(lat, lng); // Pass coordinates to parent callback
-    setSelectedLocation({ name, lat, lng, components: [] });
-    fetchWeatherByCity(name); // Fetch weather for the selected location
-    setOpen(false); // Close the dialog
+    setQuery(name); // update query with the selected location
+    onSelect(lat, lng); // pass the lat and lng to the onSelect function
+    setSelectedLocation({ name, lat, lng, components: [] }); // update the selected location
+    fetchWeatherByCity(name); // fetch weather for the selected location
+    setOpen(false); // close the dialog
     
   };
 

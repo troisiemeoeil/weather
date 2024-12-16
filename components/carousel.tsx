@@ -42,12 +42,12 @@ export function CarouselSpacing({data,time,number,steps,code}: {data: number[] |
         );
     }
 
-    // Filter time and data to include only upcoming hours
+    // filter time and data to include only pre defined hours
     const currentTime = getCurrentTime();
     const upcomingItems = time
         .map((t, i) => ({ time: t, temperature: data[i] }))
-        .filter((item) => item.time >= currentTime) // Filter by current time
-        .slice(1, number); // Limit to the number of items
+        .filter((item) => item.time >= currentTime) 
+        .slice(1, number); 
 
     return (
         <Carousel className="w-full  relative">
@@ -55,11 +55,11 @@ export function CarouselSpacing({data,time,number,steps,code}: {data: number[] |
                 {upcomingItems.map((item, index) => (
                     <CarouselItem
                         key={index}
-                        className="h-full pl-1 sm:basis-1/2 md:basis-1/3 lg:basis-1/8 xl:basis-1/8"
+                        className="h-full pl-1 basis-1/2 md:basis-1/4 lg:basis-1/8 xl:basis-1/8"
                     >
                         <div className="p-1">
                             <Card className="bg-transparent border-transparent shadow-transparent p-0 m-0">
-                                <CardContent className="p-0 h-40 flex flex-col gap-2 bg-sky-200 rounded-[2rem] items-center justify-center">
+                                <CardContent className="p-0 h-24   flex flex-col gap-2 bg-sky-200 rounded-[2rem] items-center justify-center">
                                     {/* Display Time */}
                                     <span className="text-sm font-semibold text-zinc-600">
                                         {formatTime(item.time)}

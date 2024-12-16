@@ -50,7 +50,7 @@ export const useWeatherStore = create<WeatherState>((set) => ({
             set({ suggestions: [] });
             return;
         }
-
+        // Fetch the suggestions data from OpenCage api, this api will run on user input change
         try {
             const response = await axios.get(`${OPEN_CAGE_URL}`, {
                 params: {
@@ -58,13 +58,14 @@ export const useWeatherStore = create<WeatherState>((set) => ({
                     key: OPEN_CAGE_API_KEY,
                 },
             });
-
+            // map the response data to suggestion
             const suggestions = response.data.results.map((result: any) => ({
                 name: result.formatted,
                 lat: result.geometry.lat,
                 lng: result.geometry.lng,
             }));
 
+            // Update suggestions state in store
             set({ suggestions });
         } catch (error) {
             console.error("Error fetching suggestions:", error);
