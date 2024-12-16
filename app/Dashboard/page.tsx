@@ -102,7 +102,7 @@ export default function Dashboard() {
                 <div className="flex flex-col relative justify-between xl:flex-row lg:flex-row md:flex-row gap-2 h-[40vh]  xl:pt-4 lg:pt-8 md:pt-8 pt-0">
                     <div id="forecast-info" className="flex flex-col xl:w-[30%] lg:w-[30%] md:w-[30%] w-full h-full dark:bg-zinc-800 bg-gray-200 p-4  rounded-3xl">
                         <div className="flex flex-col relative">
-                            <Label className="dark:text-zinc-200 text-zinc-600 px-4 font-medium text-xl">14 days Weather Forecast</Label>
+                            <Label className="dark:text-zinc-200 text-zinc-600 px-4 font-medium text-xl">7 days Weather Forecast</Label>
                         </div>
                         <div className=" overflow-y-auto h-full">
                             <ScrollArea className="flex flex-1 flex-col justify-start items-center rounded-md border p-2">
